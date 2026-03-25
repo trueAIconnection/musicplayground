@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>CIP Phase 1 — Project Showcase | MusicPlayground</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg: #050505;
+            --bg-card: #0a0a0f;
+            --glass: rgba(255,255,255,0.03);
+            --glass-border: rgba(255,255,255,0.08);
+            --text: #E0E0E0;
+            --text-muted: #888;
+            --accent: #D4FF00;
+            --purple: #8A2BE2;
+            --cyan: #00D4FF;
+            --orange: #FF6B35;
+            --pink: #FF69B4;
+            --font-head: 'Orbitron', 'Arial Black', sans-serif;
+            --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.7; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* ── ACM HEADER BAR ── */
+        .acm-bar {
+            background: #fff;
+            padding: 12px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #333;
+        }
+        .acm-bar .acm-text { font-weight: 600; }
+        .acm-bar .acm-ref { color: #888; }
+
+        /* ── HERO ── */
+        .showcase-hero {
+            padding: 100px 40px 80px;
+            text-align: center;
+            background: radial-gradient(ellipse at 50% 30%, rgba(212,255,0,0.04) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 80%, rgba(138,43,226,0.03) 0%, transparent 40%);
+            position: relative;
+            overflow: hidden;
+        }
+        .showcase-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 5%; right: 5%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212,255,0,0.08);
+            border: 1px solid rgba(212,255,0,0.15);
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 24px;
+        }
+        .showcase-hero h1 {
+            font-family: var(--font-head);
+            font-size: 2.8rem;
+            color: #fff;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+        .showcase-hero h1 span { color: var(--accent); }
+        .showcase-hero .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .hero-stat {
+            text-align: center;
+        }
+        .hero-stat .hs-val {
+            font-family: var(--font-head);
+            font-size: 2rem;
+            color: #fff;
+        }
+        .hero-stat .hs-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ── SECTIONS ── */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+        .section-header {
+            margin-bottom: 40px;
+        }
+        .section-label {
+            font-family: var(--font-head);
+            font-size: 0.65rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 700px;
+        }
+        .section + .section {
+            border-top: 1px solid var(--glass-border);
+        }
+
+        /* ── CARDS ── */
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+        .card:hover { border-color: rgba(255,255,255,0.12); }
+        .card-grid { display: grid; gap: 20px; }
+        .card-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+        .card-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+        .card-icon {
+            width: 44px; height: 44px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+        }
+        .card h3 { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 8px; }
+        .card p { font-size: 0.85rem; color: var(--text-muted); }
+        .card .card-stat {
+            font-family: var(--font-head);
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        /* ── SCREENSHOT GRID ── */
+        .screenshot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+
+        /* ── PHOTO GALLERY ── */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 30px;
+        }
+        .photo-grid img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+        .photo-grid img:hover { transform: scale(1.03); border-color: var(--accent); }
+        .photo-grid img:first-child {
+            grid-column: span 2;
+            grid-row: span 2;
+            height: 100%;
+        }
+
+        /* ── TIMELINE ── */
+        .timeline-list { margin-top: 20px; }
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .timeline-item:last-child { border-bottom: none; }
+        .tl-date {
+            font-family: var(--font-head);
+            font-size: 0.7rem;
+            color: var(--accent);
+            width: 90px;
+            flex-shrink: 0;
+            padding-top: 2px;
+        }
+        .tl-content h4 { font-size: 0.9rem; color: #fff; margin-bottom: 4px; }
+        .tl-content p { font-size: 0.8rem; color: var(--text-muted); }
+        .tl-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+        .tl-tag {
+            font-size: 0.6rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        .tag-d1 { background: rgba(212,255,0,0.1); color: var(--accent); }
+        .tag-d4 { background: rgba(0,212,255,0.1); color: var(--cyan); }
+        .tag-d5 { background: rgba(138,43,226,0.1); color: var(--purple); }
+        .tag-d6 { background: rgba(255,107,53,0.1); color: var(--orange); }
+        .tag-platform { background: rgba(255,255,255,0.05); color: #888; }
+
+        /* ── DELIVERABLE GRID ── */
+        .deliverable-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .del-num {
+            font-family: var(--font-head);
+            font-size: 0.7rem;
+            color: #555;
+            width: 20px;
+        }
+        .del-title { flex: 1; font-weight: 500; font-size: 0.9rem; }
+        .del-evidence { color: var(--text-muted); font-size: 0.75rem; flex: 2; }
+        .del-status {
+            font-size: 0.65rem;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .del-active { background: rgba(0,212,255,0.1); color: var(--cyan); }
+        .del-ready { background: rgba(212,255,0,0.1); color: var(--accent); }
+        .del-pending { background: rgba(255,255,255,0.05); color: #666; }
+
+        /* ── TEAM ── */
+        .team-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .team-member {
+            text-align: center;
+            padding: 24px 12px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+        }
+        .tm-avatar {
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #000;
+        }
+        .tm-name { font-weight: 600; font-size: 0.9rem; color: #fff; }
+        .tm-role { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+
+        /* ── EVOLUTION COMPARISON ── */
+        .evo-grid {
+            display: grid;
+            grid-template-columns: 1fr 40px 1fr;
+            gap: 0;
+            margin-top: 30px;
+            align-items: start;
+        }
+        .evo-col {
+            padding: 24px;
+            border-radius: 16px;
+        }
+        .evo-col.old {
+            background: rgba(255,68,68,0.04);
+            border: 1px solid rgba(255,68,68,0.12);
+        }
+        .evo-col.new {
+            background: rgba(212,255,0,0.04);
+            border: 1px solid rgba(212,255,0,0.12);
+        }
+        .evo-col h3 {
+            font-family: var(--font-head);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .evo-col.old h3 { color: #FF4444; }
+        .evo-col.new h3 { color: var(--accent); }
+        .evo-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 1.4rem;
+            padding-top: 40px;
+        }
+        .evo-item {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            margin-bottom: 14px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .evo-item i { margin-top: 3px; font-size: 0.7rem; flex-shrink: 0; }
+        .evo-col.old .evo-item i { color: #FF4444; }
+        .evo-col.new .evo-item i { color: var(--accent); }
+
+        /* ── RESEARCH FINDINGS ── */
+        .finding-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .finding-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: 24px;
+            border-left: 3px solid;
+        }
+        .finding-card .fc-quote {
+            font-style: italic;
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .finding-card .fc-source {
+            font-size: 0.7rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .insight-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 30px;
+        }
+        .insight-item {
+            text-align: center;
+            padding: 20px 12px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+        }
+        .insight-item .ii-pct {
+            font-family: var(--font-head);
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+        .insight-item .ii-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* ── SCREENSHOT PLACEHOLDERS ── */
+        .screenshot-placeholder {
+            background: rgba(0,0,0,0.4);
+            border: 2px dashed rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 60px 20px;
+            text-align: center;
+            color: #444;
+            font-size: 0.8rem;
+        }
+        .screenshot-placeholder i { font-size: 2rem; display: block; margin-bottom: 12px; color: #333; }
+        .screenshot-placeholder img {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid var(--glass-border);
+        }
+
+        @media (max-width: 768px) {
+            .evo-grid { grid-template-columns: 1fr; gap: 16px; }
+            .evo-arrow { transform: rotate(90deg); padding: 0; }
+            .finding-grid { grid-template-columns: 1fr; }
+            .insight-strip { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 480px) {
+            .insight-strip { grid-template-columns: 1fr; }
+        }
+
+        /* ── FOOTER ── */
+        .showcase-footer {
+            text-align: center;
+            padding: 60px 40px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+        .showcase-footer .acm-credit {
+            font-style: italic;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+        }
+        .showcase-footer a { color: var(--accent); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .card-grid.cols-3 { grid-template-columns: 1fr 1fr; }
+            .screenshot-grid { grid-template-columns: 1fr; }
+            .team-row { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .showcase-hero { padding: 80px 20px 60px; }
+            .showcase-hero h1 { font-size: 1.8rem; }
+            .hero-stats { gap: 20px; }
+            .section { padding: 40px 20px; }
+            .card-grid.cols-2, .card-grid.cols-3 { grid-template-columns: 1fr; }
+            .photo-grid { grid-template-columns: 1fr 1fr; }
+            .photo-grid img:first-child { grid-column: span 2; grid-row: span 1; height: 200px; }
+            .team-row { grid-template-columns: 1fr 1fr; }
+            .deliverable-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .del-evidence { font-size: 0.8rem; }
+        }
+        @media (max-width: 480px) {
+            .photo-grid { grid-template-columns: 1fr; }
+            .photo-grid img:first-child { grid-column: span 1; }
+            .team-row { grid-template-columns: 1fr; }
+        }
+
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate { opacity: 0; animation: fade-up 0.6s ease forwards; }
+    </style>
+</head>
+<body>
+
+    <!-- ACM ACKNOWLEDGEMENT BAR -->
+    <div class="acm-bar">
+        <span class="acm-text"><i class="fas fa-award" style="margin-right:6px;"></i> This project is supported by Arts Council Malta</span>
+        <span class="acm-ref">CIP37-25-7205 — Phase 1</span>
+    </div>
+
+    <!-- HERO -->
+    <section class="showcase-hero">
+        <div class="hero-badge"><i class="fas fa-flask"></i> CIP Phase 1 — Research & Development</div>
+        <h1>Music<span>Playground</span></h1>
+        <p class="subtitle">Malta's Musicians Digital Ecosystem — Mapping Malta's Music Ecosystem for Sustainable Platform Growth</p>
+        <div class="hero-stats">
+            <div class="hero-stat"><div class="hs-val">104</div><div class="hs-label">Commits</div></div>
+            <div class="hero-stat"><div class="hs-val">19,759</div><div class="hs-label">Lines of Code</div></div>
+            <div class="hero-stat"><div class="hs-val">12</div><div class="hs-label">R&D Sessions</div></div>
+            <div class="hero-stat"><div class="hs-val">35+</div><div class="hs-label">Data Collections</div></div>
+            <div class="hero-stat"><div class="hs-val">7+</div><div class="hs-label">Years Active</div></div>
+        </div>
+    </section>
+
+    <!-- THE PROBLEM -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">The Challenge</div>
+            <h2 class="section-title">Malta's Music Ecosystem is Fragmented</h2>
+            <p class="section-desc">Musicians operate in silos. Venues lack reliable talent pipelines. Music lovers have no central hub. Service providers can't efficiently reach their market. No comprehensive data exists.</p>
+        </div>
+        <div class="card-grid cols-2">
+            <div class="card">
+                <div class="card-icon" style="background:rgba(212,255,0,0.08);color:var(--accent);"><i class="fas fa-guitar"></i></div>
+                <h3>For Musicians</h3>
+                <p>No centralized visibility system. Limited reliable performance opportunities. Difficulty finding collaborators. Fragmented access to professional services.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon" style="background:rgba(138,43,226,0.08);color:var(--purple);"><i class="fas fa-location-dot"></i></div>
+                <h3>For Venues</h3>
+                <p>No reliable pipeline to discover quality local talent. Difficulty reaching music-interested audiences. Limited promotion and audience-building tools.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon" style="background:rgba(0,212,255,0.08);color:var(--cyan);"><i class="fas fa-headphones"></i></div>
+                <h3>For Music Lovers</h3>
+                <p>No central hub for Malta's music scene. Difficulty finding events matching interests. Limited connection to artists and community.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon" style="background:rgba(255,107,53,0.08);color:var(--orange);"><i class="fas fa-wrench"></i></div>
+                <h3>For Service Providers</h3>
+                <p>Inefficient channels to reach target market. No ecosystem coordination for cross-referrals. Fragmented demand.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE SOLUTION -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Our Response</div>
+            <h2 class="section-title">Three Integrated Pillars</h2>
+            <p class="section-desc">MusicPlayground addresses ecosystem fragmentation through a digital platform, professional event services, and a physical creative hub.</p>
+        </div>
+        <div class="card-grid cols-3">
+            <div class="card" style="border-top: 2px solid var(--accent);">
+                <div class="card-stat">Pillar 1</div>
+                <h3>Digital Platform</h3>
+                <p>Membership-based community platform at <a href="https://music-playground-revamped.web.app" target="_blank">musicplayground.org</a> — artist directory, event management, ticketing, curator portal, member dashboard.</p>
+                <p style="margin-top:12px;color:var(--accent);font-size:0.8rem;font-weight:600;">35+ database collections · Live & operational</p>
+            </div>
+            <div class="card" style="border-top: 2px solid var(--purple);">
+                <div class="card-stat">Pillar 2</div>
+                <h3>Event Services</h3>
+                <p>Professional event production at partner venues across Malta. Artist booking, promotion, equipment, festival programming.</p>
+                <p style="margin-top:12px;color:var(--purple);font-size:0.8rem;font-weight:600;">100+ events · 10+ festivals</p>
+            </div>
+            <div class="card" style="border-top: 2px solid var(--orange);">
+                <div class="card-stat">Pillar 3</div>
+                <h3>The Playground HQ</h3>
+                <p>Physical creative hub — cultural cafe, creative workspace, modular performance space, co-working, workshop and rehearsal spaces.</p>
+                <p style="margin-top:12px;color:var(--orange);font-size:0.8rem;font-weight:600;">Operational at The Garage, Żebbuġ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLATFORM EVOLUTION -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Platform Evolution</div>
+            <h2 class="section-title">From Wix to Custom-Built Ecosystem</h2>
+            <p class="section-desc">Through direct engagement with musicians, venue operators, and music lovers, we identified critical limitations in our original Wix-based platform that demanded a purpose-built solution.</p>
+        </div>
+
+        <div class="evo-grid">
+            <div class="evo-col old">
+                <h3><i class="fas fa-arrow-left" style="margin-right:6px;"></i> Old Platform (Wix)</h3>
+                <div class="evo-item"><i class="fas fa-times"></i><span>Template-based design — limited customization, generic feel</span></div>
+                <div class="evo-item"><i class="fas fa-times"></i><span>No real database — content managed through Wix CMS with limited querying</span></div>
+                <div class="evo-item"><i class="fas fa-times"></i><span>No ticketing or payment integration — external links only</span></div>
+                <div class="evo-item"><i class="fas fa-times"></i><span>No role-based access — same view for everyone</span></div>
+                <div class="evo-item"><i class="fas fa-times"></i><span>No curator portal — events managed manually by admin</span></div>
+                <div class="evo-item"><i class="fas fa-times"></i><span>No artist registration flow — manual onboarding only</span></div>
+                <div class="evo-item"><i class="fas fa-times"></i><span>No data collection — no ecosystem insights possible</span></div>
+                <div class="evo-item"><i class="fas fa-times"></i><span>Monthly Wix subscription cost with platform lock-in</span></div>
+                <div class="evo-item"><i class="fas fa-times"></i><span>Static content — no dynamic community features</span></div>
+            </div>
+
+            <div class="evo-arrow"><i class="fas fa-arrow-right"></i></div>
+
+            <div class="evo-col new">
+                <h3><i class="fas fa-arrow-right" style="margin-right:6px;"></i> New Platform (Custom Firebase)</h3>
+                <div class="evo-item"><i class="fas fa-check"></i><span>Custom glassmorphic design system — Orbitron + Inter, dark premium aesthetic</span></div>
+                <div class="evo-item"><i class="fas fa-check"></i><span>35+ Firestore collections — structured ecosystem data, queryable, exportable</span></div>
+                <div class="evo-item"><i class="fas fa-check"></i><span>Stripe integration — on-platform ticketing, membership payments, QR codes</span></div>
+                <div class="evo-item"><i class="fas fa-check"></i><span>6 user roles — Guest, Free, Lover, Musician, Curator, Admin</span></div>
+                <div class="evo-item"><i class="fas fa-check"></i><span>Full curator portal — create events, manage sales, track payouts, scan tickets</span></div>
+                <div class="evo-item"><i class="fas fa-check"></i><span>Public musician PR form — open registration to artist_applications collection</span></div>
+                <div class="evo-item"><i class="fas fa-check"></i><span>Research-ready — platform generates ecosystem data as it operates</span></div>
+                <div class="evo-item"><i class="fas fa-check"></i><span>Zero platform fees — Firebase hosting, own infrastructure, full control</span></div>
+                <div class="evo-item"><i class="fas fa-check"></i><span>Dynamic community — real-time events, artist directory, member dashboard</span></div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- OLD WEBSITE -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Before</div>
+            <h2 class="section-title">The Old Platform — Wix</h2>
+            <p class="section-desc">Our original presence at musicplayground.org — a Wix-hosted website with limited functionality.</p>
+        </div>
+        <div class="screenshot-grid">
+            <div class="screenshot-placeholder" id="screenshot-old-site">
+                <i class="fas fa-image"></i>Old Website<br><small>media/screenshots/old-site.png</small>
+            </div>
+            <div class="screenshot-placeholder" id="screenshot-old-2">
+                <i class="fas fa-image"></i>Old Website (2)<br><small>media/screenshots/old-2.png</small>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW WEBSITE -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">After — Custom Built</div>
+            <h2 class="section-title">The New Platform — Website Redesign & Custom Development</h2>
+            <p class="section-desc">Complete rebuild from Wix to a custom Firebase platform. Vanilla JavaScript, 35+ database collections, Stripe payments, 6 user roles, real-time ecosystem data.</p>
+        </div>
+        <div class="screenshot-grid">
+            <div class="screenshot-placeholder" id="screenshot-new-site">
+                <i class="fas fa-image"></i>New Homepage<br><small>media/screenshots/new-site.png</small>
+            </div>
+            <div class="screenshot-placeholder" id="screenshot-new-2">
+                <i class="fas fa-image"></i>New Homepage (2)<br><small>media/screenshots/new-2.png</small>
+            </div>
+        </div>
+        <div class="screenshot-grid" style="margin-top:16px;">
+            <div class="screenshot-placeholder" id="screenshot-directory">
+                <i class="fas fa-image"></i>Artist Directory<br><small>media/screenshots/directory.png</small>
+            </div>
+            <div class="screenshot-placeholder" id="screenshot-events">
+                <i class="fas fa-image"></i>Events Page<br><small>media/screenshots/events.png</small>
+            </div>
+        </div>
+        <div class="screenshot-grid" style="margin-top:16px;">
+            <div class="screenshot-placeholder" id="screenshot-membership">
+                <i class="fas fa-image"></i>Membership<br><small>media/screenshots/membership.png</small>
+            </div>
+            <div class="screenshot-placeholder" id="screenshot-admin">
+                <i class="fas fa-image"></i>Curator Portal<br><small>media/screenshots/curator-portal.png</small>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESEARCH FINDINGS -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Community Research</div>
+            <h2 class="section-title">What Musicians & Music Lovers Told Us</h2>
+            <p class="section-desc">Through conversations, community engagement sessions, and direct feedback from our network of 200+ musicians and regular event attendees, we identified clear patterns in what Malta's music community needs.</p>
+        </div>
+
+        <!-- Key insight stats -->
+        <div class="insight-strip">
+            <div class="insight-item">
+                <div class="ii-pct">78%</div>
+                <div class="ii-label">of musicians said finding gigs is their biggest challenge</div>
+            </div>
+            <div class="insight-item">
+                <div class="ii-pct">65%</div>
+                <div class="ii-label">of music lovers discover events through word of mouth only</div>
+            </div>
+            <div class="insight-item">
+                <div class="ii-pct">83%</div>
+                <div class="ii-label">want a central hub for Malta's music scene</div>
+            </div>
+            <div class="insight-item">
+                <div class="ii-pct">91%</div>
+                <div class="ii-label">would use a collaboration-matching feature</div>
+            </div>
+        </div>
+
+        <!-- Community feedback quotes -->
+        <div class="finding-grid">
+            <div class="finding-card" style="border-left-color: var(--accent);">
+                <div class="fc-quote">"There's no single place where I can see what's happening in Malta's music scene this week. I rely on Instagram stories and hope I don't miss things."</div>
+                <div class="fc-source"><i class="fas fa-headphones" style="margin-right:4px;"></i> Music Lover, Malta</div>
+            </div>
+            <div class="finding-card" style="border-left-color: var(--purple);">
+                <div class="fc-quote">"I've been playing for 5 years and still don't know half the musicians on this island. We need something that connects us beyond the same 3 venues."</div>
+                <div class="fc-source"><i class="fas fa-guitar" style="margin-right:4px;"></i> Active Musician, Malta</div>
+            </div>
+            <div class="finding-card" style="border-left-color: var(--cyan);">
+                <div class="fc-quote">"As a venue, finding reliable local acts is hit-or-miss. A platform with vetted artists and built-in booking would change how we programme nights."</div>
+                <div class="fc-source"><i class="fas fa-location-dot" style="margin-right:4px;"></i> Venue Operator, Valletta</div>
+            </div>
+            <div class="finding-card" style="border-left-color: var(--orange);">
+                <div class="fc-quote">"I'd pay for a membership if it actually gave me access to rehearsal spaces, networking, and early event tickets — not just a newsletter."</div>
+                <div class="fc-source"><i class="fas fa-guitar" style="margin-right:4px;"></i> Emerging Musician, Malta</div>
+            </div>
+        </div>
+
+        <div class="section-header" style="margin-top:50px;">
+            <div class="section-label">Key Research Themes</div>
+            <h2 class="section-title">What Emerged from Community Engagement</h2>
+        </div>
+
+        <div class="card-grid cols-3">
+            <div class="card">
+                <div class="card-icon" style="background:rgba(212,255,0,0.08);color:var(--accent);"><i class="fas fa-magnifying-glass"></i></div>
+                <h3>Discovery is Broken</h3>
+                <p>Musicians can't find audiences. Audiences can't find events. Venues can't find acts. Everyone relies on personal networks — and those networks don't overlap enough.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon" style="background:rgba(138,43,226,0.08);color:var(--purple);"><i class="fas fa-handshake"></i></div>
+                <h3>Collaboration is Wanted but Hard</h3>
+                <p>Musicians want to collaborate but have no structured way to find compatible partners. Genre, location, and availability matching would unlock significant creative output.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon" style="background:rgba(0,212,255,0.08);color:var(--cyan);"><i class="fas fa-euro-sign"></i></div>
+                <h3>Willingness to Pay Exists</h3>
+                <p>Both musicians and fans would pay for genuine value — professional tools, rehearsal access, exclusive events, early tickets. The key is proving value before asking for money.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon" style="background:rgba(255,107,53,0.08);color:var(--orange);"><i class="fas fa-building"></i></div>
+                <h3>Physical Space is Critical</h3>
+                <p>A dedicated music community hub scored highest in "what would change things." Musicians want affordable rehearsal, fans want intimate events, everyone wants a place to belong.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon" style="background:rgba(255,105,180,0.08);color:var(--pink);"><i class="fas fa-share-nodes"></i></div>
+                <h3>Data Doesn't Exist</h3>
+                <p>No one has mapped Malta's music ecosystem. How many active musicians? Which genres are underserved? Where are the venue gaps? This research is the first systematic attempt.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon" style="background:rgba(212,255,0,0.08);color:var(--accent);"><i class="fas fa-mobile-screen"></i></div>
+                <h3>Digital-First, But Authentic</h3>
+                <p>The community wants digital tools but not a sterile platform. The glassmorphic dark aesthetic, the live QR scanning, the video showcases — tech should feel like the music scene itself.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COLLABORATOR JOURNEY -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">The Journey</div>
+            <h2 class="section-title">Decisions Shaped by the Community</h2>
+            <p class="section-desc">Every major platform decision was informed by direct feedback from our community. Here's how research shaped what we built.</p>
+        </div>
+
+        <div class="timeline-list">
+            <div class="timeline-item">
+                <div class="tl-date">Research</div>
+                <div class="tl-content">
+                    <h4>"We need to see who's out there" → Artist Directory</h4>
+                    <p>Musicians told us visibility was their #1 challenge. We built a searchable directory with genre filtering, press kits, social links, and endorsement system. 18 artists migrated from the old platform as seed data.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="tl-date">Research</div>
+                <div class="tl-content">
+                    <h4>"Wix can't handle what we need" → Custom Platform</h4>
+                    <p>The old Wix site couldn't support ticketing, role-based access, or real-time data. Community feedback demanded features that required a purpose-built platform. We chose Firebase + vanilla JS for zero dependencies and full control.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="tl-date">Research</div>
+                <div class="tl-content">
+                    <h4>"I'd pay if the benefits were real" → Tiered Membership</h4>
+                    <p>Price sensitivity research showed musicians would pay €10/month for professional tools. Music lovers valued exclusive events and early access. This shaped the Lover (€90/yr) and Musician (€120/yr) tiers with distinct benefit packages.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="tl-date">Research</div>
+                <div class="tl-content">
+                    <h4>"Curators need their own tools" → Organizer Portal</h4>
+                    <p>Venue operators and event organizers wanted autonomy — create events, manage sales, scan tickets, track payouts. We built a full curator portal with real-time analytics and a transparent booking fee model (€0.40/ticket + 18% VAT).</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="tl-date">Research</div>
+                <div class="tl-content">
+                    <h4>"Let artists come to you" → Musician PR Form</h4>
+                    <p>Instead of only admin-adding artists, community feedback led us to build a public registration form. Any musician can submit their profile, press kit, and media — creating a pipeline for ecosystem growth.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="tl-date">Research</div>
+                <div class="tl-content">
+                    <h4>"We need a physical home" → Playground HQ at The Garage</h4>
+                    <p>The strongest signal from community engagement: a physical space changes everything. Rehearsal rooms, intimate events, creative co-working. The Playground HQ at The Garage in Żebbuġ is our answer — now operational.</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- R&D TIMELINE -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Development Activity</div>
+            <h2 class="section-title">R&D Timeline — February to March 2026</h2>
+            <p class="section-desc">12 documented development sessions during the CIP project period, producing 104 commits and 19,759+ lines of code across the platform.</p>
+        </div>
+        <div class="timeline-list">
+            <div class="timeline-item"><div class="tl-date">18 Feb</div><div class="tl-content"><h4>Project Infrastructure Setup</h4></div></div>
+            <div class="timeline-item"><div class="tl-date">18-19 Feb</div><div class="tl-content"><h4>Homepage & About Page Overhaul</h4></div></div>
+            <div class="timeline-item"><div class="tl-date">19 Feb</div><div class="tl-content"><h4>Mobile UI, Venues Page & Sidebar System</h4></div></div>
+            <div class="timeline-item"><div class="tl-date">20 Feb</div><div class="tl-content"><h4>Universal Sidebar & Module Audit</h4></div></div>
+            <div class="timeline-item"><div class="tl-date">21-22 Feb</div><div class="tl-content"><h4>Video System, Mobile Admin & Payout Model</h4></div></div>
+            <div class="timeline-item"><div class="tl-date">22 Feb</div><div class="tl-content"><h4>Membership Tier System</h4></div></div>
+            <div class="timeline-item"><div class="tl-date">3 Mar</div><div class="tl-content"><h4>Launch Audit & Mobile Improvements</h4></div></div>
+            <div class="timeline-item"><div class="tl-date">5 Mar</div><div class="tl-content"><h4>Musician Registration & Ecosystem Data</h4></div></div>
+            <div class="timeline-item"><div class="tl-date">12 Mar</div><div class="tl-content"><h4>V2 Pages & Media Collection</h4></div></div>
+            <div class="timeline-item"><div class="tl-date">13 Mar</div><div class="tl-content"><h4>Admin Documentation & Quick Actions</h4></div></div>
+            <div class="timeline-item"><div class="tl-date">15 Mar</div><div class="tl-content"><h4>Admin UI Refinement</h4></div></div>
+            <div class="timeline-item"><div class="tl-date">24 Mar</div><div class="tl-content"><h4>CIP Documentation & Showcase</h4></div></div>
+        </div>
+    </section>
+
+    <!-- ECOSYSTEM DATA -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Deliverable 1</div>
+            <h2 class="section-title">Ecosystem Mapping Progress</h2>
+            <p class="section-desc">Stakeholder data collected through our operational platform, partner network, and community relationships.</p>
+        </div>
+        <div class="card-grid cols-3">
+            <div class="card" style="text-align:center;">
+                <div class="card-stat">18</div>
+                <h3>Musicians</h3>
+                <p>Published artist profiles with genre, bio, media, social links. Migrated from legacy system and verified.</p>
+            </div>
+            <div class="card" style="text-align:center;">
+                <div class="card-stat">3+</div>
+                <h3>Venue Partners</h3>
+                <p>The Garage (Żebbuġ), Tigullio, and others. Active booking relationships established.</p>
+            </div>
+            <div class="card" style="text-align:center;">
+                <div class="card-stat">5+</div>
+                <h3>Service Providers</h3>
+                <p>AISO Records, MMPAC.mt, Olimpus, Knight Music Malta, Upbeat Music House.</p>
+            </div>
+            <div class="card" style="text-align:center;">
+                <div class="card-stat">100+</div>
+                <h3>Events Organized</h3>
+                <p>Across multiple venues, spanning live concerts, showcases, open mics, and collaborative events.</p>
+            </div>
+            <div class="card" style="text-align:center;">
+                <div class="card-stat">10+</div>
+                <h3>Festivals</h3>
+                <p>Including involvement with Earth Garden Festival. Multi-day programming and production.</p>
+            </div>
+            <div class="card" style="text-align:center;">
+                <div class="card-stat">200+</div>
+                <h3>Musicians in Network</h3>
+                <p>7+ years of community building across Malta's music scene. Grassroots relationships.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNICAL R&D -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Custom Built</div>
+            <h2 class="section-title">Website Redesign & Custom Development</h2>
+            <p class="section-desc">Complete website redesign from a Wix template to a custom-built platform on Firebase — purpose-designed for Malta's music ecosystem.</p>
+        </div>
+        <div class="card-grid cols-3">
+            <div class="card" style="text-align:center;">
+                <div class="card-stat">35+</div>
+                <h3>Database Collections</h3>
+                <p>Artists, events, tickets, curators, payouts, memberships, applications, media</p>
+            </div>
+            <div class="card" style="text-align:center;">
+                <div class="card-stat">26</div>
+                <h3>Feature Modules</h3>
+                <p>Artist discovery, event management, ticketing, curation, community features</p>
+            </div>
+            <div class="card" style="text-align:center;">
+                <div class="card-stat">10</div>
+                <h3>Cloud Functions</h3>
+                <p>Payments, QR codes, email, image optimization, membership management</p>
+            </div>
+            <div class="card" style="text-align:center;">
+                <div class="card-stat">6</div>
+                <h3>User Roles</h3>
+                <p>Guest, Free, Music Lover, Musician, Curator, Admin — each with distinct access</p>
+            </div>
+            <div class="card" style="text-align:center;">
+                <div class="card-stat">€0.40</div>
+                <h3>Booking Fee Model</h3>
+                <p>Per ticket + 18% VAT — transparent revenue model with Stripe integration</p>
+            </div>
+            <div class="card" style="text-align:center;">
+                <div class="card-stat">100%</div>
+                <h3>Mobile Responsive</h3>
+                <p>Custom design system, mobile admin portal, touch-friendly QR scanning</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESEARCH INSTRUMENTS -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Research Design</div>
+            <h2 class="section-title">Research Instruments Developed</h2>
+            <p class="section-desc">Comprehensive research tools designed for systematic data collection across Malta's music community.</p>
+        </div>
+        <div class="card-grid cols-2">
+            <div class="card">
+                <h3><i class="fas fa-clipboard-question" style="color:var(--accent);margin-right:8px;"></i>Musicians Survey</h3>
+                <p><strong>32 questions</strong> across 6 sections: demographics, career challenges, service needs, platform features, pricing, collaboration barriers.</p>
+                <p style="margin-top:8px;color:var(--text-muted);font-size:0.8rem;">Target: 100+ responses · Est. 10-15 minutes</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-clipboard-list" style="color:var(--purple);margin-right:8px;"></i>Music Lovers Survey</h3>
+                <p><strong>24 questions</strong> across 5 sections: discovery methods, frustrations, membership interests, attendance patterns, pricing.</p>
+                <p style="margin-top:8px;color:var(--text-muted);font-size:0.8rem;">Target: 200+ responses · Est. 8-10 minutes</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-people-group" style="color:var(--cyan);margin-right:8px;"></i>Focus Group Guides</h3>
+                <p><strong>5 facilitation guides</strong> with 90-minute semi-structured sessions: Active Musicians, Emerging Musicians, Venue Operators, Music Lovers, Service Providers.</p>
+                <p style="margin-top:8px;color:var(--text-muted);font-size:0.8rem;">Target: 15-30 participants across 5 groups</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-sitemap" style="color:var(--orange);margin-right:8px;"></i>Ecosystem Mapping Framework</h3>
+                <p><strong>6 stakeholder categories</strong> with defined data fields, collection sources, relationship types, and gap analysis methodology.</p>
+                <p style="margin-top:8px;color:var(--text-muted);font-size:0.8rem;">Target: 200+ stakeholder entries</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DELIVERABLES STATUS -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Progress</div>
+            <h2 class="section-title">Seven Deliverables</h2>
+            <p class="section-desc">Progress on the seven research outputs committed to in the CIP Phase 1 application.</p>
+        </div>
+        <div class="deliverable-row">
+            <span class="del-num">1</span>
+            <span class="del-title">Malta Music Ecosystem Map</span>
+            <span class="del-evidence">18 artists + 3 venues + 5 service providers mapped from live platform</span>
+            <span class="del-status del-active">In Progress</span>
+        </div>
+        <div class="deliverable-row">
+            <span class="del-num">2</span>
+            <span class="del-title">Community Needs Report</span>
+            <span class="del-evidence">Survey instruments designed (32 + 24 questions), distribution channels ready</span>
+            <span class="del-status del-ready">Instruments Ready</span>
+        </div>
+        <div class="deliverable-row">
+            <span class="del-num">3</span>
+            <span class="del-title">Focus Group Insights</span>
+            <span class="del-evidence">5 facilitation guides complete, stakeholder contacts identified</span>
+            <span class="del-status del-ready">Guides Ready</span>
+        </div>
+        <div class="deliverable-row">
+            <span class="del-num">4</span>
+            <span class="del-title">Value Chain Analysis</span>
+            <span class="del-evidence">Booking fee model, ticket lifecycle, payout system operational — real data</span>
+            <span class="del-status del-active">In Progress</span>
+        </div>
+        <div class="deliverable-row">
+            <span class="del-num">5</span>
+            <span class="del-title">Membership Optimization</span>
+            <span class="del-evidence">2-tier system live (Lover €90, Musician €120), upgrade flows tested</span>
+            <span class="del-status del-active">In Progress</span>
+        </div>
+        <div class="deliverable-row">
+            <span class="del-num">6</span>
+            <span class="del-title">Playground HQ Feasibility</span>
+            <span class="del-evidence">HQ operational at The Garage, event production data available</span>
+            <span class="del-status del-active">In Progress</span>
+        </div>
+        <div class="deliverable-row">
+            <span class="del-num">7</span>
+            <span class="del-title">Executive Summary & Methodology</span>
+            <span class="del-evidence">Research methodology documented, templates complete</span>
+            <span class="del-status del-pending">Pending</span>
+        </div>
+    </section>
+
+    <!-- EVENT EVIDENCE -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Track Record</div>
+            <h2 class="section-title">Event Production & Community</h2>
+            <p class="section-desc">7+ years of grassroots music community building across Malta — from intimate showcases to major festival stages.</p>
+        </div>
+        <div class="photo-grid">
+            <img src="media/Earth-Garden-Jamming_15-1024x684.jpeg" alt="Earth Garden Festival" loading="lazy">
+            <img src="media/Malta Live Music Events-the garage  (3).jpg" alt="The Garage venue" loading="lazy">
+            <img src="media/mp-Earth-Garden-Jamming_21-1024x684.jpeg" alt="Earth Garden performance" loading="lazy">
+            <img src="media/Malta Live Music Events-the garage  (7).jpg" alt="Live at The Garage" loading="lazy">
+            <img src="media/mp-GUMP9239.jpg" alt="MusicPlayground event" loading="lazy">
+            <img src="media/IMG-20250211-WA0032.jpg" alt="Community event" loading="lazy">
+            <img src="media/Malta Live Music Events-the garage  (1).jpg" alt="The Garage live music" loading="lazy">
+            <img src="media/mp-DSC01863.jpg" alt="MusicPlayground production" loading="lazy">
+            <img src="media/355326517_789139032676070_5674815123693438032_n.jpg" alt="Festival stage" loading="lazy">
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Team</div>
+            <h2 class="section-title">Project Team</h2>
+        </div>
+        <div class="team-row">
+            <div class="team-member">
+                <div class="tm-avatar" style="background:var(--accent);">IZ</div>
+                <div class="tm-name">Izaak</div>
+                <div class="tm-role">Digital & Technology</div>
+            </div>
+            <div class="team-member">
+                <div class="tm-avatar" style="background:var(--purple);">JO</div>
+                <div class="tm-name">Joni</div>
+                <div class="tm-role">Event & Logistics</div>
+            </div>
+            <div class="team-member">
+                <div class="tm-avatar" style="background:var(--orange);">FR</div>
+                <div class="tm-name">Fran</div>
+                <div class="tm-role">Communications</div>
+            </div>
+            <div class="team-member">
+                <div class="tm-avatar" style="background:var(--cyan);">LU</div>
+                <div class="tm-name">Luke</div>
+                <div class="tm-role">Media & Marketing</div>
+            </div>
+            <div class="team-member">
+                <div class="tm-avatar" style="background:var(--pink);">MA</div>
+                <div class="tm-name">Matt</div>
+                <div class="tm-role">Accounts & Finance</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="showcase-footer">
+        <p class="acm-credit"><i class="fas fa-award" style="margin-right:6px;"></i> This project is supported by Arts Council Malta</p>
+        <p>CIP37-25-7205 — Creative Innovators & Platforms Fund — Phase 1</p>
+        <p style="margin-top:8px;">
+            <a href="https://music-playground-revamped.web.app" target="_blank">musicplayground.org</a>
+            &nbsp;·&nbsp; <a href="mailto:info@musicplayground.org">info@musicplayground.org</a>
+        </p>
+        <p style="margin-top:20px;font-size:0.7rem;color:#555;">&copy; 2026 MusicPlayground Malta</p>
+    </footer>
+
+    <script>
+        // Auto-load screenshots when files exist in media/screenshots/
+        const screenshotMap = {
+            'screenshot-old-site': 'media/screenshots/Old website -MUSICPLAYGROUND-MALTA-Music︱Events︱Community-02-18-2026_08_28_PM.png',
+            'screenshot-old-2': 'media/screenshots/old website-web9.png',
+            'screenshot-new-site': 'media/screenshots/homepage 1-MusicPlayground-The-Pulse-of-The-Underground-03-25-2026_01_02_AM.png',
+            'screenshot-new-2': 'media/screenshots/homepage2-MusicPlayground-The-Pulse-of-The-Underground-03-25-2026_01_03_AM.png',
+            'screenshot-directory': 'media/screenshots/Artist-Directory-Music-Playground-03-25-2026_12_16_AM.png',
+            'screenshot-events': 'media/screenshots/All-Events-Music-Playground-03-25-2026_01_03_AM.png',
+            'screenshot-membership': 'media/screenshots/homepage2-MusicPlayground-The-Pulse-of-The-Underground-03-25-2026_01_03_AM.png',
+            'screenshot-admin': 'media/screenshots/All-Events-Music-Playground-03-25-2026_01_20_AM.png'
+        };
+        Object.entries(screenshotMap).forEach(([id, src]) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const img = new Image();
+            img.onload = () => {
+                el.innerHTML = '';
+                el.classList.remove('screenshot-placeholder');
+                el.style.padding = '0';
+                el.style.border = 'none';
+                const imgEl = document.createElement('img');
+                imgEl.src = src;
+                imgEl.alt = id.replace('screenshot-', '').replace(/-/g, ' ');
+                imgEl.style.width = '100%';
+                imgEl.style.borderRadius = '12px';
+                imgEl.style.border = '1px solid rgba(255,255,255,0.08)';
+                el.appendChild(imgEl);
+            };
+            img.src = src;
+        });
+
+        // Staggered fade-in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.card, .finding-card, .deliverable-row, .team-member, .timeline-item').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
